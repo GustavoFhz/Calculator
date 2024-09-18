@@ -42,6 +42,7 @@
                 default: Console.WriteLine("Invalid Option"); break;
 
             }
+           
         }
         while (!endGame);
 
