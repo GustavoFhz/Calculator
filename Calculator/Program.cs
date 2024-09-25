@@ -1,15 +1,15 @@
-﻿List<string> numbers = new List<string>();
+﻿using System.ComponentModel.Design;
 
+List<string> numbers = new List<string>();
 int manyTimes = 0;
-void Main()
-{
-    Menu();
-}
+
+Menu();
 void Menu()
 {
     var endGame = false;
     do
     {
+        
         Console.WriteLine("Welcome to the Calculator Program");
         Console.WriteLine("------------------");
         Console.WriteLine("Enter an option:");
@@ -25,17 +25,18 @@ void Menu()
         Console.WriteLine("\tq : Quit the game");
 
         string? opc = Console.ReadLine();
+        Console.Clear();
 
         switch (opc)
         {
-            case "+": Add(); break;
-            case "-": Subtract(); break;
-            case "*": Multiply(); break;
-            case "/": Divide(); break;
+            case "+": Add("Addition selected"); break;
+            case "-": Subtract("Subctract selected"); break;
+            case "*": Multiply("Multiply selected"); break;
+            case "/": Divide("Divide  selected"); break;
             case "t": Times(); break;
-            case "sr": SquareRoot(); break;
-            case "p": TakingThePower(); break;
-            case "s": ShowHistory(); break;
+            case "sr": SquareRoot("SquareRoot selected"); break;
+            case "p": TakingThePower("Taking The Power selected"); break;
+            case "s": ShowHistory("History"); break;
             case "d": DeleteHistory(); break;
             case "q": endGame = true; break;
             default: Console.WriteLine("Invalid Option"); break;
@@ -44,8 +45,6 @@ void Menu()
 
     }
     while (!endGame);
-
-
 
 }
 double GetValidNumber(string prompt)
@@ -59,8 +58,9 @@ double GetValidNumber(string prompt)
     }
     return num;
 }
-void Add()
+void Add(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
     double num2 = GetValidNumber("Type the second number");
 
@@ -71,8 +71,9 @@ void Add()
     Console.WriteLine(msg);
     manyTimes++;
 }
-void Subtract()
+void Subtract(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
     double num2 = GetValidNumber("Type the second number");
 
@@ -83,8 +84,9 @@ void Subtract()
     Console.WriteLine(msg);
     manyTimes++;
 }
-void Multiply()
+void Multiply(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
     double num2 = GetValidNumber("Type the second number");
 
@@ -95,8 +97,9 @@ void Multiply()
     Console.WriteLine(msg);
     manyTimes++;
 }
-void Divide()
+void Divide(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
 
     double num2;
@@ -114,8 +117,9 @@ void Divide()
     Console.WriteLine(msg);
     manyTimes++;
 }
-void SquareRoot()
+void SquareRoot(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
 
 
@@ -126,8 +130,9 @@ void SquareRoot()
     Console.WriteLine(msg);
     manyTimes++;
 }
-void TakingThePower()
+void TakingThePower(string message)
 {
+    ShowMessage(message);
     double num1 = GetValidNumber("Type the first number");
     double num2 = GetValidNumber("Type the second number");
 
@@ -144,8 +149,9 @@ void Times()
     Console.WriteLine($"The calculator was used {manyTimes} times(s)");
 
 }
-void ShowHistory()
+void ShowHistory(string message)
 {
+    ShowMessage(message);
     if (numbers.Count == 0)
     {
         Console.WriteLine("No calculations yet");
@@ -163,4 +169,8 @@ void DeleteHistory()
 {
     Console.WriteLine("Calculation history has been cleared.\n");
     numbers.Clear();
+}
+void ShowMessage(string message)
+{
+    Console.WriteLine(message + "\n");
 }
